@@ -17,7 +17,7 @@ import frc.robot.maps.CurrentRobot;
 import frc.robot.maps.Tempest;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Leds;
-import frc.robot.subsystems.LiftSubsystem;
+// import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.subsystems.Maflipulator;
 import frc.robot.subsystems.Manipulator;
 import frc.robot.subsystems.LiftSubsystem.Heights;
@@ -31,11 +31,11 @@ import frc.robot.subsystems.LiftSubsystem.Heights;
  */
 public class Robot extends CommandRobot {
 
-    final private RobotMap robotMap = new CurrentRobot();
+    final private RobotMap robotMap = new Tempest();
     final public static ButtonXboxController xBoxCoPilot = new ButtonXboxController(1);
     final private Maflipulator maflipulator = new Maflipulator(robotMap.getMaflipulatorMap());
     final private Drive drive = new Drive(robotMap.getDriveMap());
-    final private LiftSubsystem lift = new LiftSubsystem(robotMap.getLiftMap());
+    // final private LiftSubsystem lift = new LiftSubsystem(robotMap.getLiftMap());
     final private Manipulator manipulator = new Manipulator(robotMap.getManipulatorMap());
     public static ButtonXboxController driveController = new ButtonXboxController(5);
     public static Leds leds = new Leds();
@@ -87,7 +87,7 @@ public class Robot extends CommandRobot {
      */
     @Override
     public void autonomousInit() {
-        autonomousCommand = lift.homePos();
+        // autonomousCommand = lift.homePos();
 
         // schedule the autonomous command (example)
         if (autonomousCommand != null) {
@@ -119,42 +119,45 @@ public class Robot extends CommandRobot {
     // });
     // }
 
-    public Command goodFlip() {
-        CommandChain retValue = new CommandChain("Good Flip");
+    // public Command goodFlip() {
+    // CommandChain retValue = new CommandChain("Good Flip");
 
-        retValue.then(lift.goToAtLeast(LiftSubsystem.Heights.kLiftFlipHeight)).then(maflipulator.crappyFlip());
-        return retValue;
-    }
+    // retValue.then(lift.goToAtLeast(LiftSubsystem.Heights.kLiftFlipHeight)).then(maflipulator.crappyFlip());
+    // return retValue;
+    // }
 
-    public Command stowAndGo() {
-        CommandChain retValue = new CommandChain("Stow it and go!");
-        retValue.then(lift.goToHeight(Heights.kFloorLoad), maflipulator.stowAndGoPosition());
-        return retValue;
-    }
+    // public Command stowAndGo() {
+    // CommandChain retValue = new CommandChain("Stow it and go!");
+    // retValue.then(lift.goToHeight(Heights.kFloorLoad),
+    // maflipulator.stowAndGoPosition());
+    // return retValue;
+    // }
 
-    public Command levelOne() {
-        CommandChain retValue = new CommandChain("Level one");
+    // public Command levelOne() {
+    // CommandChain retValue = new CommandChain("Level one");
 
-        retValue.then(lift.goToHeight(Heights.kLoadingStation));
-        return retValue;
+    // retValue.then(lift.goToHeight(Heights.kLoadingStation));
+    // return retValue;
 
-    }
+    // }
 
-    public Command levelTwo() {
-        CommandChain retValue = new CommandChain("Level 2");
+    // public Command levelTwo() {
+    // CommandChain retValue = new CommandChain("Level 2");
 
-        retValue.then(lift.goToHeight(Heights.kRocketHatchMid), maflipulator.goToScoringPosition());
-        return retValue;
+    // retValue.then(lift.goToHeight(Heights.kRocketHatchMid),
+    // maflipulator.goToScoringPosition());
+    // return retValue;
 
-    }
+    // }
 
-    public Command levelThree() {
-        CommandChain retValue = new CommandChain("Level 3");
+    // public Command levelThree() {
+    // CommandChain retValue = new CommandChain("Level 3");
 
-        retValue.then(lift.goToHeight(Heights.kRocketHatchHigh), maflipulator.goToScoringPosition());
-        return retValue;
+    // retValue.then(lift.goToHeight(Heights.kRocketHatchHigh),
+    // maflipulator.goToScoringPosition());
+    // return retValue;
 
-    }
+    // }
 
     // public Command darkenCameras() {
     // return new InstantCommand(() -> {
@@ -174,7 +177,7 @@ public class Robot extends CommandRobot {
         xBoxCoPilot.getButton(ButtonXboxController.XBoxButton.BUMPER_LEFT).whenPressed(manipulator.openBeak());
         xBoxCoPilot.getButton(ButtonXboxController.XBoxButton.BUMPER_RIGHT.get()).whenPressed(manipulator.closeBeak());
 
-        driveController.getButton(ButtonXboxController.XBoxButton.Y).whenPressed(goodFlip());
+        // driveController.getButton(ButtonXboxController.XBoxButton.Y).whenPressed(goodFlip());
         driveController.getButton(ButtonXboxController.XBoxButton.A).whileHeld(drive.visionPID());
         driveController.getButton(ButtonXboxController.XBoxButton.BUMPER_LEFT).whileHeld(drive.leftSlowTurn());
         driveController.getButton(ButtonXboxController.XBoxButton.BUMPER_RIGHT).whileHeld(drive.rightSlowTurn());
