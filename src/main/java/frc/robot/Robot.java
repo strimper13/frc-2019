@@ -8,6 +8,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSink;
 import edu.wpi.cscore.VideoSource.ConnectionStrategy;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.InstantCommand;
@@ -39,6 +40,8 @@ public class Robot extends CommandRobot {
     final private Manipulator manipulator = new Manipulator(robotMap.getManipulatorMap());
     public static ButtonXboxController driveController = new ButtonXboxController(5);
     public static Leds leds = new Leds();
+    PowerDistributionPanel pdp = new PowerDistributionPanel();
+
     private Command autonomousCommand;
     final private SendableChooser<Command> chooser = new SendableChooser<>();
 
